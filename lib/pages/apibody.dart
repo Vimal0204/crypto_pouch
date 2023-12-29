@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:crypto_tracker/models/Crytocurrency.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class ApiCall extends StatefulWidget {
   const ApiCall({super.key});
@@ -15,6 +16,7 @@ class ApiCall extends StatefulWidget {
 
 class _ApiCallState extends State<ApiCall> {
   List<CryptoCurrency> currency = [];
+  String formattedRefresh = "";
   GlobalKey<RefreshIndicatorState> refreshKey =
       GlobalKey<RefreshIndicatorState>();
 
@@ -63,6 +65,8 @@ class _ApiCallState extends State<ApiCall> {
     }
     setState(() {
       currency = tempList;
+      DateFormat dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
+      formattedRefresh = dateFormat.format(DateTime.now());
     });
     Timer(
       const Duration(minutes: 3),
@@ -94,7 +98,7 @@ class _ApiCallState extends State<ApiCall> {
             children: [
               Container(
                 width: double.maxFinite,
-                height: 130,
+                height: 150,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   gradient: LinearGradient(
@@ -110,18 +114,25 @@ class _ApiCallState extends State<ApiCall> {
                 child: Column(
                   children: [
                     const SizedBox(
-                      height: 15,
-                    ),
-                    Text(
-                      "Welcome Back!",
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                    SizedBox(
                       height: 10,
                     ),
                     Text(
-                      "Currency Dashboard",
+                      "Welcome Back!",
                       style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    SizedBox(
+                      height:15,
+                    ),
+                    Text(
+                      "Currency Dashboard",
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Last Updated: $formattedRefresh",
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ],
                 ),
