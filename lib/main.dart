@@ -2,8 +2,6 @@ import 'package:crypto_tracker/pages/apibody.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-// import 'package:provider/provider.dart';
 List<Color> color = const [
   Color.fromARGB(255, 154, 126, 236),
   Color.fromARGB(255, 180, 124, 219),
